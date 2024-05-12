@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Time Calculator - Live Update</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .calculator {
+      max-width: 400px;
+      margin: 0 auto;
+      border: 3px solid #500980;
+      border-radius: 5px;
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+	  width: 100px; /* Tamanho ajustável */
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border: 5px solid #500980;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+ <div class="calculator">
+    <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/661f5784796fc_wortimeicon.png" alt="Uploaded Image" id="uploadedImage">
+  <h2>Work Time Calculator</h2>
+ 
+    <div class="form-group">
+      <label for="minutesRecorded">Minutes Recorded:</label>
+      <input type="number" id="minutesRecorded" min="0" step="1" value="1" oninput="calculateTime()">
+    </div>
+    <div class="form-group">
+      <label for="baseValue">Base Value (qtty work mins vs. 1 min rec):</label>
+      <input type="number" id="baseValue" min="1" step="1" value="25" oninput="calculateTime()">
+    </div>
+    <div class="form-group">
+      <label for="hoursPerDay">Hours Per Day:</label>
+      <input type="number" id="hoursPerDay" min="1" step="1" value="5" oninput="calculateTime()">
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateTime() {
+      var minutesRecorded = parseInt(document.getElementById('minutesRecorded').value);
+      var baseValue = parseInt(document.getElementById('baseValue').value);
+      var hoursPerDay = parseInt(document.getElementById('hoursPerDay').value);
+
+      // Calculando o tempo total de trabalho com base nos minutos registrados e no valor base
+      var totalWorkTime = minutesRecorded * baseValue;
+
+      // Convertendo o tempo total de trabalho para horas e minutos
+      var totalHours = totalWorkTime / 60;
+
+      // Calculando o total de dias necessários com base nas horas por dia
+      var totalDays = totalHours / hoursPerDay;
+
+      // Exibindo o resultado
+      document.getElementById('result').innerHTML = `Total Work Time: ${Math.floor(totalHours)} hours and ${Math.round((totalHours % 1) * 60)} minutes.<br>Total Days Required: ${Math.ceil(totalDays)} days.`;
+    }
+
+    // Chamada inicial para calcular com os valores padrões ao carregar a página
+    calculateTime();
+  </script>
+</body>
+</html>
