@@ -1,96 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work Time Calculator - Live Update</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    .calculator {
-      max-width: 400px;
-      margin: 0 auto;
-      border: 3px solid #500980;
-      border-radius: 5px;
-      padding: 20px;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      font-weight: bold;
-    }
-    input[type="number"] {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      box-sizing: border-box;
-    }
-    .result {
-      margin-top: 20px;
-      text-align: center;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 20px;
-	  width: 100px; /* Tamanho ajustável */
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      border: 5px solid #500980;
-      border-radius: 50%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe com Botões Ativos e Dropdown</title>
+    <style>
+        .container-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            gap: 8px; /* Espaço entre os botões */
+            margin-top: 20px; /* Espaço entre o iframe e os botões */
+        }
+
+        button, .dropbtn {
+            background-color: #a2b7b8; /* Cor de fundo */
+            color: black; /* Cor do texto */
+            padding: 10px 15px; /* Espaçamento interno */
+            font-size: 17px; /* Tamanho do texto */
+           /* border size: none; /* Sem bordas */
+			/*border color: # gray;
+            cursor: pointer; /* Cursor do mouse como ponteiro */
+            margin: 4px; /* Margem externa */
+            width: auto; /* Largura automática baseada no conteúdo */
+            height: auto; /* Altura automática baseada no conteúdo */
+            display: inline-block; /* Garante que width e height sejam respeitados */
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos no cálculo do width/height */
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);	
+		
+        }
+
+        button:hover, button.active, .dropdown-content a:hover {
+            background-color: #afffff; /* Cor de fundo para hover e ativo */
+        }
+
+        iframe {
+            width: 1200px; /* Largura do iframe */
+            height: 650px; /* Altura do iframe */
+            border: 1px solid #ccc; /* Borda do iframe */
+            display: block;
+            margin: auto; /* Centraliza o iframe horizontalmente */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.59);
+        }
+
+        /* Estilos para o dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+			color: #afffff;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+			color: #afffff;            
+			display: block;
+			color: #afffff;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+			
+        }
+    </style>
 </head>
 <body>
- <div class="calculator">
-    <img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/661f5784796fc_wortimeicon.png" alt="Uploaded Image" id="uploadedImage">
-  <h2>Work Time Calculator</h2>
- 
-    <div class="form-group">
-      <label for="minutesRecorded">Minutes Recorded:</label>
-      <input type="number" id="minutesRecorded" min="0" step="1" value="1" oninput="calculateTime()">
+
+<iframe src="about:blank" name="myiFrame" allowfullscreen></iframe>
+
+<div class="container-buttons">
+    <!-- Botões Existentes -->
+  <button type="button" onclick="mudarSrc('https://sobralfreenat.github.io/framework_3_prioridades/', this)"> ↺
+</button>
+     <space></space>  <space></space>
+   <button type="button" onclick="mudarSrc('https://d1yei2z3i6k35z.cloudfront.net/3119789/661f6f41d2353_24_04_16_Imagemarquivos.png', this)">📂 Ver Arquivos_DEMO</button> 
+    <space></space>
+   
+    <button type="button" onclick="mudarSrc('https://sobralfreenat.github.io/assessoria-digital-prioridades/', this)">📃 Prioridades</button>
+    <button type="button" onclick="mudarSrc('https://sobralfreenat.github.io/FerramentasEstrategicas2/', this)">⚡ ETO Tools</button>
+    <button type="button" onclick="mudarSrc('https://sobralfreenat.github.io/Registro-Tarefa-Tempo/', this)">⏱️  Registro de Tempo</button>
+    <button type="button" onclick="mudarSrc('https://d1yei2z3i6k35z.cloudfront.net/3119789/662831c4448cb_instrucaovitrineacessoprecos.mp4', this)">🎥 Vitrine</button>
+   
+   
+   
+ <space></space>  <space></space><space></space>  <space></space><space></space>  <space></space><space></space>  <space></space><space></space>  <space></space><space></space>
+
+ <!-- Dropdown Menu -->
+    <div class="dropdown">
+        <button class="dropbtn"> ⭐  DEMO</button>
+        <div class="dropdown-content">
+          
+          <br>
+         
+         
+ <!--  imagem <a href="#" onclick="mudarSrc('https://d1yei2z3i6k35z.cloudfront.net/3119789/661f5934a4344_ECOSSISTEMAINDUSTRIAMIDIAENTRETENIMENTOEPUBLICIDADE.png', this)">Negócio 35%</a>  -->   
+            
+   
+   
+   <a href="#" onclick="mudarSrc('https://systeme.io/dashboard/courses/248057/curriculum', this)">ADMIN</a>
+   
+   <br>
+   <a href="#" onclick="mudarSrc('https://d1yei2z3i6k35z.cloudfront.net/3119789/661f6f41d2353_24_04_16_Imagemarquivos.png', this)">Arquivos 24_04_16</a>
+   <br><br>
+    <a href="#" onclick="mudarSrc('https://www.xmind.app/embed/jcKwih/', this)">Negócio 35% MAPA</a>
+
+
+   
+
+
+		<a href="#" onclick="mudarSrc('https://sobralfreenat.github.io/Viablidade-360/', this)">Viab 360</a>
+
+		<a href="#" onclick="mudarSrc('https://sobralfreenat.github.io/Viablidade-Financeira/', this)">Viab Financ</a>
+
+		<a href="#" onclick="mudarSrc('https://sobralfreenat.github.io/FerramentasEstrategicas2/', this)">ETO Tools 5w2h</a>
+            
+		<a href="#" onclick="mudarSrc('https://sobralfreenat.github.io/Registro-Tarefa-Tempo/', this)">Produtividade 27%</a>
+
+		<a href="#" onclick="mudarSrc('https://sobralfreenat.github.io/worktimecalc/', this)">Prod (Worktime CalcProd)</a>
+
+
+		<a href="#" onclick="mudarSrc('https://lab-freenat.systeme.io/freenatwork/mapa-sp-150', this)">Nicho /Publico Alvo 15%</a>
+           
+
+ 			
+
+			 <a href="#" onclick="mudarSrc('https://sobralfreenat.github.io/TicketMedio-Calc/', this)">Ticket Medio 11%</a>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="baseValue">Base Value (qtty work mins vs. 1 min rec):</label>
-      <input type="number" id="baseValue" min="1" step="1" value="25" oninput="calculateTime()">
-    </div>
-    <div class="form-group">
-      <label for="hoursPerDay">Hours Per Day:</label>
-      <input type="number" id="hoursPerDay" min="1" step="1" value="5" oninput="calculateTime()">
-    </div>
-    <div class="result" id="result"></div>
-  </div>
+</div>
 
-  <script>
-    function calculateTime() {
-      var minutesRecorded = parseInt(document.getElementById('minutesRecorded').value);
-      var baseValue = parseInt(document.getElementById('baseValue').value);
-      var hoursPerDay = parseInt(document.getElementById('hoursPerDay').value);
+<script>
+    function mudarSrc(url, elemento) {
+        // Atualiza o src do iframe
+        document.getElementsByName('myiFrame')[0].src = url;
 
-      // Calculando o tempo total de trabalho com base nos minutos registrados e no valor base
-      var totalWorkTime = minutesRecorded * baseValue;
+        // Remove a classe 'active' de todos os botões e links
+        var elementos = document.querySelectorAll('.container-buttons button, .container-buttons a');
+        elementos.forEach(function(el) {
+            el.classList.remove('active');
+        });
 
-      // Convertendo o tempo total de trabalho para horas e minutos
-      var totalHours = totalWorkTime / 60;
-
-      // Calculando o total de dias necessários com base nas horas por dia
-      var totalDays = totalHours / hoursPerDay;
-
-      // Exibindo o resultado
-      document.getElementById('result').innerHTML = `Total Work Time: ${Math.floor(totalHours)} hours and ${Math.round((totalHours % 1) * 60)} minutes.<br>Total Days Required: ${Math.ceil(totalDays)} days.`;
+        // Adiciona a classe 'active' ao elemento clicado
+        elemento.classList.add('active');
     }
+	
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdown = document.querySelector('.dropdown');
+    var dropbtn = dropdown.querySelector('.dropbtn');
+    var content = dropdown.querySelector('.dropdown-content');
 
-    // Chamada inicial para calcular com os valores padrões ao carregar a página
-    calculateTime();
-  </script>
+    dropbtn.onclick = function() {
+        var dropdownRect = dropdown.getBoundingClientRect();
+        var contentHeight = content.offsetHeight;
+
+        // Verifica se há espaço suficiente para abrir para baixo
+        if (window.innerHeight - dropdownRect.bottom < contentHeight) {
+            // Abre para cima
+            content.style.bottom = '100%';
+            content.style.top = 'auto';
+        } else {
+            // Abre para baixo (padrão)
+            content.style.top = '100%';
+            content.style.bottom = 'auto';
+        }
+    };
+});
+</script>
+
 </body>
 </html>
